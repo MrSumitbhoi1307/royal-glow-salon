@@ -26,7 +26,7 @@ const DashboardCards = () => {
   const fetchDashboard = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/dashboard"
+        "https://royal-glow-salon.onrender.com/api/dashboard"
       );
 
       if (data.success) {

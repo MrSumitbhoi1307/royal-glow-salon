@@ -20,7 +20,7 @@ const AdminLogin = () => {
       setLoading(true);
 
       const { data } = await axios.post(
-        "http://localhost:4000/api/admin/login",
+        "https://royal-glow-salon.onrender.com/api/admin/login",
         {
           email,
           password,

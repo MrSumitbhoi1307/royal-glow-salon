@@ -57,7 +57,7 @@ const AcademyApplyForm = () => {
       setSubmitting(true);
 
       const { data } = await axios.post(
-        "http://localhost:4000/api/academy",
+        "https://royal-glow-salon.onrender.com/api/academy",
         {
           name: formData.fullName,
           email: formData.email,

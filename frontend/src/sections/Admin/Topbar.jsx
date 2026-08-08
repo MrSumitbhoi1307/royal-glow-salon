@@ -57,11 +57,11 @@ const Topbar = () => {
     try {
       const [stylistsRes, servicesRes, galleryRes, academyRes, franchiseRes] =
         await Promise.allSettled([
-          axios.get("http://localhost:4000/api/stylists"),
-          axios.get("http://localhost:4000/api/services"),
-          axios.get("http://localhost:4000/api/gallery"),
-          axios.get("http://localhost:4000/api/academy"),
-          axios.get("http://localhost:4000/api/franchise"),
+          axios.get("https://royal-glow-salon.onrender.com/api/stylists"),
+          axios.get("https://royal-glow-salon.onrender.com/api/services"),
+          axios.get("https://royal-glow-salon.onrender.com/api/gallery"),
+          axios.get("https://royal-glow-salon.onrender.com/api/academy"),
+          axios.get("https://royal-glow-salon.onrender.com/api/franchise"),
         ]);
 
       const combined = [];

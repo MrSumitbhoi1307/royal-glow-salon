@@ -10,7 +10,7 @@ const StylistManager = () => {
 
   const fetchStylists = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/api/stylists");
+      const { data } = await axios.get("https://royal-glow-salon.onrender.com/api/stylists");
       if (data.success) setStylists(data.stylists);
     } catch (error) {
       console.log(error);
@@ -42,7 +42,7 @@ const StylistManager = () => {
 
     try {
       const { data } = await axios.delete(
-        `http://localhost:4000/api/stylists/${id}`
+        `https://royal-glow-salon.onrender.com/api/stylists/${id}`
       );
       if (data.success) fetchStylists();
     } catch (error) {
@@ -57,9 +57,9 @@ const StylistManager = () => {
 
     try {
       if (editId) {
-        await axios.put(`http://localhost:4000/api/stylists/${editId}`, form);
+        await axios.put(`https://royal-glow-salon.onrender.com/api/stylists/${editId}`, form);
       } else {
-        await axios.post("http://localhost:4000/api/stylists", form);
+        await axios.post("https://royal-glow-salon.onrender.com/api/stylists", form);
       }
 
       setShowForm(false);

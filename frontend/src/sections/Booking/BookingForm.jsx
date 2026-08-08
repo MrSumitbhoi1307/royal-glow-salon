@@ -50,7 +50,7 @@ const BookingForm = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/appointment/book",
+        "https://royal-glow-salon.onrender.com/api/appointment/book",
         {
           name: formData.fullName,
           email: formData.email,

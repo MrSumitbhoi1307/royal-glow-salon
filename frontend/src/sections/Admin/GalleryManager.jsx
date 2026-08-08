@@ -14,7 +14,7 @@ const GalleryManager = () => {
   const fetchGallery = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/gallery"
+        "https://royal-glow-salon.onrender.com/api/gallery"
       );
 
       if (data.success) {
@@ -47,7 +47,7 @@ const GalleryManager = () => {
       formData.append("image", file);
 
       const { data } = await axios.post(
-        "http://localhost:4000/api/gallery",
+        "https://royal-glow-salon.onrender.com/api/gallery",
         formData
       );
 
@@ -76,7 +76,7 @@ const GalleryManager = () => {
 
     try {
       const { data } = await axios.delete(
-        `http://localhost:4000/api/gallery/${id}`
+        `https://royal-glow-salon.onrender.com/api/gallery/${id}`
       );
 
       if (data.success) {

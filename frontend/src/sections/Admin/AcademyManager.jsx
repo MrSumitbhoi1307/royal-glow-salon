@@ -8,7 +8,7 @@ const AcademyManager = () => {
   const fetchApplications = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/academy"
+        "https://royal-glow-salon.onrender.com/api/academy"
       );
       if (data.success) setApplications(data.applications);
     } catch (error) {
@@ -23,7 +23,7 @@ const AcademyManager = () => {
   const updateStatus = async (id, status) => {
     try {
       const { data } = await axios.put(
-        `http://localhost:4000/api/academy/${id}`,
+        `https://royal-glow-salon.onrender.com/api/academy/${id}`,
         { status }
       );
 
@@ -38,7 +38,7 @@ const AcademyManager = () => {
 
     try {
       const { data } = await axios.delete(
-        `http://localhost:4000/api/academy/${id}`
+        `https://royal-glow-salon.onrender.com/api/academy/${id}`
       );
 
       if (data.success) fetchApplications();

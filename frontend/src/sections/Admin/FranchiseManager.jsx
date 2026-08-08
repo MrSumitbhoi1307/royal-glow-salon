@@ -9,7 +9,7 @@ const FranchiseManager = () => {
   const fetchFranchises = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/franchise"
+        "https://royal-glow-salon.onrender.com/api/franchise"
       );
       if (data.success) setFranchises(data.franchises);
     } catch (error) {
@@ -20,7 +20,7 @@ const FranchiseManager = () => {
   const fetchActiveCities = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/franchise/active-cities"
+        "https://royal-glow-salon.onrender.com/api/franchise/active-cities"
       );
       if (data.success) setActiveCities(data.cities);
     } catch (error) {
@@ -36,7 +36,7 @@ const FranchiseManager = () => {
   const updateStatus = async (id, status) => {
     try {
       const { data } = await axios.put(
-        `http://localhost:4000/api/franchise/${id}`,
+        `https://royal-glow-salon.onrender.com/api/franchise/${id}`,
         { status }
       );
 
@@ -54,7 +54,7 @@ const FranchiseManager = () => {
 
     try {
       const { data } = await axios.delete(
-        `http://localhost:4000/api/franchise/${id}`
+        `https://royal-glow-salon.onrender.com/api/franchise/${id}`
       );
 
       if (data.success) {
