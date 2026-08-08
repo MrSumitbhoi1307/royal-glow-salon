@@ -1,21 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Check, X, Trash2 } from "lucide-react";
 
 const AcademyManager = () => {
-  const [applications, setApplications] = useState([
-    { id: 1, name: "Ananya Patil", course: "Hair Styling Course", status: "Pending" },
-    { id: 2, name: "Vikas Rao", course: "Makeup Artistry", status: "Approved" },
-  ]);
+  const [applications, setApplications] = useState([]);
 
-  const updateStatus = (id, status) => {
-    setApplications((prev) =>
-      prev.map((a) => (a.id === id ? { ...a, status } : a))
-    );
+  const fetchApplications = async () => {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:4000/api/academy"
+      );
+      if (data.success) setApplications(data.applications);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleDelete = (id) => {
-    if (window.confirm("Hi application delete karaychi ka?")) {
-      setApplications((prev) => prev.filter((a) => a.id !== id));
+  useEffect(() => {
+    fetchApplications();
+  }, []);
+
+  const updateStatus = async (id, status) => {
+    try {
+      const { data } = await axios.put(
+        `http://localhost:4000/api/academy/${id}`,
+        { status }
+      );
+
+      if (data.success) fetchApplications();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Hi application delete karaychi ka?")) return;
+
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:4000/api/academy/${id}`
+      );
+
+      if (data.success) fetchApplications();
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -34,36 +62,38 @@ const AcademyManager = () => {
           <tr className="border-b border-[#D4AF37]/20">
             <th className="py-4 text-left text-[#D4AF37]">Name</th>
             <th className="text-left text-[#D4AF37]">Course</th>
+            <th className="text-left text-[#D4AF37]">City</th>
             <th className="text-left text-[#D4AF37]">Status</th>
             <th className="text-left text-[#D4AF37]">Action</th>
           </tr>
         </thead>
         <tbody>
           {applications.map((item) => (
-            <tr key={item.id} className="border-b border-white/10">
+            <tr key={item._id} className="border-b border-white/10">
               <td className="py-5 text-white">{item.name}</td>
               <td className="text-gray-300">{item.course}</td>
+              <td className="text-gray-300">{item.city}</td>
               <td className={`font-semibold ${statusColor(item.status)}`}>
                 {item.status}
               </td>
               <td>
                 <div className="flex gap-3">
                   <button
-                    onClick={() => updateStatus(item.id, "Approved")}
+                    onClick={() => updateStatus(item._id, "Approved")}
                     title="Approve"
                     className="rounded-lg bg-green-600 p-3 hover:bg-green-700 transition"
                   >
                     <Check size={18} className="text-white" />
                   </button>
                   <button
-                    onClick={() => updateStatus(item.id, "Rejected")}
+                    onClick={() => updateStatus(item._id, "Rejected")}
                     title="Reject"
                     className="rounded-lg bg-yellow-600 p-3 hover:bg-yellow-700 transition"
                   >
                     <X size={18} className="text-white" />
                   </button>
                   <button
-                    onClick={() => handleDelete(item.id)}
+                    onClick={() => handleDelete(item._id)}
                     title="Delete"
                     className="rounded-lg bg-red-600 p-3 hover:bg-red-700 transition"
                   >
@@ -76,7 +106,7 @@ const AcademyManager = () => {
 
           {applications.length === 0 && (
             <tr>
-              <td colSpan={4} className="py-8 text-center text-gray-500">
+              <td colSpan={5} className="py-8 text-center text-gray-500">
                 No applications found
               </td>
             </tr>

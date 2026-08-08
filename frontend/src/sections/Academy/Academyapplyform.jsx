@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import academyData from "./academyData";
 
 const AcademyApplyForm = () => {
@@ -12,6 +13,7 @@ const AcademyApplyForm = () => {
 
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,15 +48,34 @@ const AcademyApplyForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validate()) return;
 
-    // TODO: connect to backend / email service here
-    console.log("Academy Application Submitted:", formData);
+    try {
+      setSubmitting(true);
 
-    setSubmitted(true);
+      const { data } = await axios.post(
+        "http://localhost:4000/api/academy",
+        {
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          course: formData.course,
+          message: formData.message,
+        }
+      );
+
+      if (data.success) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -223,9 +244,10 @@ const AcademyApplyForm = () => {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full rounded-xl bg-[#D4AF37] py-4 font-semibold text-black transition duration-300 hover:bg-[#c19f2f]"
+            disabled={submitting}
+            className="w-full rounded-xl bg-[#D4AF37] py-4 font-semibold text-black transition duration-300 hover:bg-[#c19f2f] disabled:cursor-not-allowed disabled:opacity-50"
           >
-            Submit Application
+            {submitting ? "Submitting..." : "Submit Application"}
           </button>
 
         </form>

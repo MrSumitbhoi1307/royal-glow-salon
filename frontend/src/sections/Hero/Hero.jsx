@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import HeroText from "./HeroText";
+import heroVideo from "../../assets/videos/hero.mp4";
 
 import Reveal from "../../components/Common/Reveal";
 import { fadeUp } from "../../animations/fadeUp";
@@ -32,7 +33,7 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover object-center"
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
         </video>
 
       </motion.div>

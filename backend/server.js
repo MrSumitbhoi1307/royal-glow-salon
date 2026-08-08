@@ -14,6 +14,7 @@ import stylistRoutes from "./routes/stylistRoutes.js";
 import galleryRoutes from "./routes/galleryRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoute.js";
 import academyRoutes from "./routes/academyRoutes.js";
+import franchiseRoutes from "./routes/franchiseRoutes.js";
 dotenv.config();
 
 // Database
@@ -57,6 +58,8 @@ app.use("/api/gallery", galleryRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
 app.use("/api/academy", academyRoutes);
+
+app.use("/api/franchise", franchiseRoutes);
 
 // ==============================
 // HOME ROUTE
