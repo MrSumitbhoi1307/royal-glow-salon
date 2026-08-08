@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 
 import Logo from "./Logo";
-import Button from "../common/Button";
+import Button from "../Common/Button";
 import MobileMenu from "./MobileMenu";
 
 const Navbar = () => {

@@ -1,4 +1,4 @@
-import Navbar from "../components/layout/Navbar";
+import Navbar from "../components/Layout/Navbar";
 import Footer from "../sections/Footer/Footer";
 
 const TermsConditions = () => {

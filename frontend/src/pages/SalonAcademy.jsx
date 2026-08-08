@@ -1,4 +1,4 @@
-import Navbar from "../components/layout/Navbar";
+import Navbar from "../components/Layout/Navbar";
 import AcademyHero from "../sections/Academy/AcademyHero";
 import AcademyAbout from "../sections/Academy/AcademyAbout";
 import WhyChooseAcademy from "../sections/Academy/WhyChooseAcademy";

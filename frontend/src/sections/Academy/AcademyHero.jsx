@@ -1,5 +1,5 @@
 import academyData from "./academyData";
-import Button from "../../components/common/Button";
+import Button from "../../components/Common/Button";
 import heroImage from "../../assets/images/academy/academy-hero.jpeg";
 
 const AcademyHero = () => {
